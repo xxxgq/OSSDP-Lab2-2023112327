@@ -7,9 +7,12 @@ import java.util.Set;
 public class L2023112327_6_Test {
     
     static class Solution6 {
+        // 存储每个用户的收藏公司
         Set<String>[] s = new Set[105];
 
+        // 计算满足条件的用户索引
         public List<Integer> peopleIndexes(List<List<String>> favoriteCompanies) {
+            // 初始化 Set 数组
             for (int i = 0; i < 105; ++i) {
                 s[i] = new HashSet<String>();
             }
@@ -17,17 +20,19 @@ public class L2023112327_6_Test {
             int n = favoriteCompanies.size();
             List<Integer> ans = new ArrayList<Integer>();
 
+            // 将每个用户的收藏公司列表转换为 Set
             for (int i = 0; i < n; ++i) {
                 for (String com : favoriteCompanies.get(i)) {
                     s[i].add(com);
                 }
             }
 
+            // 遍历每个用户，检查是否为其他用户的子集
             for (int i = 0; i < n; ++i) {
                 boolean isSubset = false;
                 for (int j = 0; j < n; ++j) {
-                    if (i == j) continue;
-                    if (check(i, j)) {
+                    if (i == j) continue;  
+                    if (check(i, j)) {  
                         isSubset = true;
                         break;
                     }
@@ -39,18 +44,19 @@ public class L2023112327_6_Test {
             return ans;
         }
 
+        // 判断用户 x 是否是用户 y 的子集
         public boolean check(int x, int y) {
             for (String com : s[x]) {
                 if (!s[y].contains(com)) {
-                    return false;
+                    return false;  
                 }
             }
             return true;
         }
     }
     
+    // 测试用例 1：基本示例，测试子集关系
     public static void testExample1() {
-        System.out.println("Test 1: Basic example with subset relationships");
         Solution6 solution = new Solution6();
         List<List<String>> favoriteCompanies = Arrays.asList(
             Arrays.asList("leetcode", "google", "facebook"),
@@ -63,14 +69,11 @@ public class L2023112327_6_Test {
         List<Integer> result = solution.peopleIndexes(favoriteCompanies);
         List<Integer> expected = Arrays.asList(0, 1, 4);
         
-        System.out.println("Input: " + favoriteCompanies);
-        System.out.println("Expected: " + expected);
-        System.out.println("Actual: " + result);
         System.out.println("Test 1 Result: " + (result.equals(expected) ? "PASS" : "FAIL"));
     }
     
+    // 测试用例 2：没有子集关系的情况
     public static void testNoSubsets() {
-        System.out.println("Test 2: No subset relationships");
         Solution6 solution = new Solution6();
         List<List<String>> favoriteCompanies = Arrays.asList(
             Arrays.asList("leetcode"),
@@ -82,14 +85,11 @@ public class L2023112327_6_Test {
         List<Integer> result = solution.peopleIndexes(favoriteCompanies);
         List<Integer> expected = Arrays.asList(0, 1, 2, 3);
         
-        System.out.println("Input: " + favoriteCompanies);
-        System.out.println("Expected: " + expected);
-        System.out.println("Actual: " + result);
         System.out.println("Test 2 Result: " + (result.equals(expected) ? "PASS" : "FAIL"));
     }
     
+    // 测试用例 3：边界情况
     public static void testEdgeCases() {
-        System.out.println("Test 3: Edge cases with single elements");
         Solution6 solution = new Solution6();
         List<List<String>> favoriteCompanies = Arrays.asList(
             Arrays.asList("company1"),
@@ -100,26 +100,17 @@ public class L2023112327_6_Test {
         List<Integer> result = solution.peopleIndexes(favoriteCompanies);
         List<Integer> expected = Arrays.asList(1, 2);
         
-        System.out.println("Input: " + favoriteCompanies);
-        System.out.println("Expected: " + expected);
-        System.out.println("Actual: " + result);
         System.out.println("Test 3 Result: " + (result.equals(expected) ? "PASS" : "FAIL"));
     }
     
+    // main 方法：执行所有测试
     public static void main(String[] args) {
         System.out.println("SOLUTION6 UNIT TEST");
-        System.out.println("Student ID: 2023112327");
-        System.out.println("================================");
         
         testExample1();
-        System.out.println();
-        
         testNoSubsets();
-        System.out.println();
-        
         testEdgeCases();
         
-        System.out.println("================================");
         System.out.println("TEST COMPLETED");
     }
 }

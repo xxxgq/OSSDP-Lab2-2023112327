@@ -56,4 +56,21 @@ class Solution6 {
         }
         return true;
     }
+
+    //     // 添加 main 方法来运行代码
+    // public static void main(String[] args) {
+    //     Solution6 solution = new Solution6();
+        
+    //     // 测试方法
+    //     List<List<String>> favoriteCompanies = new ArrayList<>();
+    //     List<String> user1 = List.of("google", "facebook");
+    //     List<String> user2 = List.of("google");
+    //     List<String> user3 = List.of("facebook", "amazon");
+    //     favoriteCompanies.add(user1);
+    //     favoriteCompanies.add(user2);
+    //     favoriteCompanies.add(user3);
+
+    //     List<Integer> result = solution.peopleIndexes(favoriteCompanies);
+    //     System.out.println(result); // 输出结果
+    // }
 }
